@@ -69,7 +69,6 @@ public class CursosController {
 		}
 	}
 
-	
 	@ApiOperation(value = "Excluir curso", notes = "Excluir um curso oferecido na Educorp, por id", nickname = "Excluir curso")
 	@ApiResponses(value = { @ApiResponse(code = 204, message = "Curso excluído"),
 			@ApiResponse(code = 500, message = "Erro ao excluir curso") })
@@ -101,6 +100,38 @@ public class CursosController {
 		} else {
 			return new ResponseEntity<Curso>(HttpStatus.NOT_FOUND);
 		}
+	}
+
+	// Versionamento
+	@GetMapping(value = "/cursos/p", produces = { "application/vnd.cursos.educorp-v1.0+json" })
+	@Deprecated
+	public ResponseEntity<String> getCursosMetodoDeprecated() {
+		return ResponseEntity.ok("metodo deprecated - buscando todos os cursos");
+	}
+
+	@GetMapping(value = "/cursos/p", produces = { "application/vnd.cursos.educorp-v2.0+json" })
+	public ResponseEntity<String> getCursosNovoMetodo() {
+		return ResponseEntity.ok("metodo novo - buscando todos os cursos");
+	}
+	
+	@GetMapping(value = "/cursos/h", headers = "API-VERSION=1")
+	public ResponseEntity<String> getCursosHeaderVersao1() {
+		return ResponseEntity.ok("header versao 1 - buscando todos os cursos");
+	}
+
+	@GetMapping(value = "/cursos/h", headers = "API-VERSION=2")
+	public ResponseEntity<String> getCursosHeaderVersao2() {
+		return ResponseEntity.ok("header versao 2 - buscando todos os cursos");
+	}
+	
+	@GetMapping(value = "/cursos/v", params = "version=1")
+	public ResponseEntity<String> getCursosVersao1() {
+		return ResponseEntity.ok("versao 1 - buscando todos os cursos");
+	}
+
+	@GetMapping(value = "/cursos/v", params = "version=2")
+	public ResponseEntity<String> getCursosVersao2() {
+		return ResponseEntity.ok("versao 2 - buscando todos os cursos");
 	}
 
 }
