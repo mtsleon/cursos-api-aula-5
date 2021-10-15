@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.unicamp.educorp.microservices</groupId>
 	<artifactId>cursos-api-aula-5</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>cursos-api-aula-5</name>
 	<description>Iniciando uma API Rest com Spring Boot - Documentation</description>
 	<properties>
